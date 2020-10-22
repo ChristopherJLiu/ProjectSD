@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The core configuration file for the framework is the default (struts.xml) file
+and should reside on the classpath of the webapp (generally /WEB-INF/classes). -->
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+  <!-- devMode equals debug information and reload everything for every request -->
+  <constant name="struts.devMode" value="true" />
+  <constant name="struts.ui.theme" value="simple" />
+
+  <package name="SdFinal" extends="struts-default">
+
+  	<interceptors>
+        <interceptor name="Authorizeuser" class="webconsola.AuthorizationInterceptor"></interceptor>
+
+        <interceptor-stack name="myStack">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="Authorizeuser" />
+        </interceptor-stack>
+    </interceptors>
+
+    <default-interceptor-ref name="myStack" />
+	
+	<default-action-ref name="index" />
+
+	
+	<global-results>
+		<result name="error">/error.jsp</result>
+		<result name="login">/login.jsp</result>
+	</global-results>
+
+	<global-exception-mappings>
+		<exception-mapping exception="java.lang.Exception" result="error" />
+	</global-exception-mappings>
+
+    <action name="index">
+      <result>/index.jsp</result>
+    </action>
+
+    <action name="criarpessoas" class="webconsola.criarpessoasAction" method="execute">
+       <result name="true">/true.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="criareleicao" class="webconsola.criareleicaoAction" method="execute">
+       <result name="true">/true.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="consultardetalhes" class="webconsola.consultardetalhesAction" method="execute">
+       <result name="true">/consultardetalhes.jsp</result>
+    </action>
+
+
+    <action name="criarmesa" class="webconsola.criarmesaAction" method="execute">
+       <result name="true">/true.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="alterareleicao" class="webconsola.alterareleicaoAction" method="execute">
+       <result name="true">/true.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="verlocaleleicao" class="webconsola.verlocaleleicaoAction" method="execute">
+       <result name="true">/verlocaleleicao.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="resultados" class="webconsola.resultadosAction" method="execute">
+       <result name="true">/resultados.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="alterarpessoa" class="webconsola.alterarpessoaAction" method="execute">
+       <result name="true">/true.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="criarlista" class="webconsola.criarlistaAction" method="execute">
+       <result name="true">/true.jsp</result>
+      <result name="false">/false.jsp</result>
+    </action>
+
+    <action name="login" class="webconsola.loginAction" method="execute">
+       <result name="true">/index.jsp</result>
+      <result name="false">/loginfail.jsp</result>
+    </action>
+
+    <action name="logout" class="webconsola.logoutAction" method="execute">
+       <result name="true">/login.jsp</result>
+    </action>
+
+
+
+  </package>
+
+</struts>
